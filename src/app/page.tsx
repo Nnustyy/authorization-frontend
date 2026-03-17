@@ -1,5 +1,3 @@
-'use client'
-
 import { buttonVariants } from "@/shared/components/ui"
 import Link from "next/link"
 
