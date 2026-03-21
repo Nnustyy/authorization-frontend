@@ -1,35 +1,34 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterSchema, TypeRegisterSchema } from "../schemas";
+import { LoginSchema } from "../schemas";
 import { AuthWrapper } from "./AuthWrapper";
 import { useForm } from 'react-hook-form'
 import { Button, Field, FieldSet, Input } from "@/shared/components/ui";
-
-export function RegisterForm() {
+import { TypeLoginSchema } from "../schemas";
+export function LoginForm() {
 
   const {
     register,
     handleSubmit,
     formState: { errors}
-  } = useForm<TypeRegisterSchema>({
-    resolver: zodResolver(RegisterSchema),
+  } = useForm<TypeLoginSchema>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       name: '',
       email: '',
       password: '',
-      passwordRepeat: ''
     }
   });
 
-  const onSubmit = (values: TypeRegisterSchema) => {
+  const onSubmit = (values: TypeLoginSchema) => {
     console.log(values);
   }
 
   return( <AuthWrapper
-  heading="Регистрация"
-  description="Введите email и пароль для регистрации"
-  backButtonLabel="Уже есть аккаунт? Войти"
-  backButtonHref="/auth/login"
+  heading="Войти"
+  description="Введите логин и пароль для входа"
+  backButtonLabel="Нет аккаунта? Регистрация"
+  backButtonHref="/auth/register"
   isShowSocial>
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
       <FieldSet>
@@ -80,24 +79,9 @@ export function RegisterForm() {
             )}
           </Field>
 
-          <Field className="space-y-2">
-            <label htmlFor="passwordRepeat" className="text-sm font-medium leading-none">
-              Подтверждение пароля
-            </label>
-            <Input
-              id="passwordRepeat"
-              type="password"
-              placeholder="******"
-              {...register('passwordRepeat')}
-              className={errors.passwordRepeat ? 'border-destructive' : ''}
-            />
-            {errors.passwordRepeat && (
-              <p className="text-sm text-destructive">{errors.passwordRepeat.message}</p>
-            )}
-          </Field>
 
           <Button type="submit" className="w-full">
-            Создать аккаунт
+            Войти в аккаунт
           </Button>
       </FieldSet>
     </form>
