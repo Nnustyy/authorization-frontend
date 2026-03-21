@@ -3,7 +3,7 @@ export const RegisterSchema = z.object({
   name: z.string().min(1, {
     message: 'Введите имя'
   }),
-  email: z.email(),
+  email: z.string().email(),
   password: z.string().min(6, {
     message: 'Пароль минимум 6 символов'
   }),
