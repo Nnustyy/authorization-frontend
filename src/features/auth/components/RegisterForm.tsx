@@ -4,8 +4,14 @@ import { RegisterSchema, TypeRegisterSchema } from "../schemas";
 import { AuthWrapper } from "./AuthWrapper";
 import { useForm } from 'react-hook-form'
 import { Button, Field, FieldSet, Input } from "@/shared/components/ui";
+// import { useTheme } from "next-themes";
+// import { useState } from "react";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 export function RegisterForm() {
+
+  // const { theme } = useTheme()
+  // const [ recapthchaValue, setRecaptchaValue ] = useState<string | null>(null)
 
   const {
     register,
@@ -95,7 +101,13 @@ export function RegisterForm() {
               <p className="text-sm text-destructive">{errors.passwordRepeat.message}</p>
             )}
           </Field>
-
+          <div className="flex justify-center">
+            {/* <ReCAPTCHA
+            sitekey={process.env.GOOGLE_RECAPTCHA_SITE_SECRET as string}
+            onChange={setRecaptchaValue}
+            theme={theme === 'light' ? 'dark' : 'light'}
+            /> */}
+          </div>
           <Button type="submit" className="w-full">
             Создать аккаунт
           </Button>
